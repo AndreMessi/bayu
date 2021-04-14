@@ -66,4 +66,10 @@ class PembayaranController extends Controller
         return back()->withErrors(['Gagal Mengupload Bukti']);
     }
 
+    public function cetak_pdf(){
+        $cetak = Pembayaran::all();
+        $pdf = PDF::loadview('pembayaran.pembayaran_pdf', ['pembayaran' => $cetak]);
+        return $pdf->download('laporan-pembayaran-pdf.pdf');
+    }
+
 }

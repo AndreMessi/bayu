@@ -1,6 +1,11 @@
 @extends('partials.layout')
 @section('title','Pembayaran')
 @section('content')
+    <div class="container">
+        <h5>Nama        : Holly Tour & Travell</h5>
+        <h5>No Rekening : 123456789</h5>
+        <h5>Bank        : BNI</h5>
+    </div>
     @auth
         @if(auth()->user()->role==='admin')
             <div class="col-12">
@@ -107,8 +112,6 @@
                                                     <input id="uploadBukti-{{$i->pesan_id}}" type="hidden" class="custom-file-input" name="bukti_img">
                                                     <input type="hidden" name="bukti_pesan_id" value="{{$i->pesan_id}}">
                                                 </form>
-                                            @else
-                                                'Menunggu Konfirmasi Admin'
                                             @endif
                                         </td>
                                     </tr>
