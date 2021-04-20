@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
 class PembayaranController extends Controller
 {
     public function index(){
@@ -67,9 +67,22 @@ class PembayaranController extends Controller
     }
 
     public function cetak_pdf(){
-        $cetak = Pembayaran::all();
-        $pdf = PDF::loadview('pembayaran.pembayaran_pdf', ['pembayaran' => $cetak]);
-        return $pdf->download('laporan-pembayaran-pdf.pdf');
+        $cetak =  DB::table('pesan')
+                    ->leftJoin('users','id','=','pesan_user_id')
+                    ->leftJoin('jadwal','jadwal_id','=','pesan_jadwal_id')
+                    ->leftJoin('paket','paket_id','=','jadwal_paket_id')
+                    ->leftJoin('bukti','pesan_id','=','bukti_pesan_id');
+                if (auth()->user()->role==='admin'){
+                    $cetak = $cetak->get();
+                }else{
+                    $cetak = $cetak->where('id','=',Auth::id())->get();
+                }
+        //load tampilan pdf
+        $pdf= PDF::loadview('pages/pembayaran/pembayaran_pdf',['pembayaran' => $cetak]);
+        //megatur layout
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('laporan-pembayaran-pdf.pdf');
+
     }
 
 }

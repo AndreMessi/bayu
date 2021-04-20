@@ -46,6 +46,7 @@ Route::group(['prefix'=>'/pembayaran'],function (){
     Route::get('/','PembayaranController@index')->name('pages.pembayaran');
     Route::post('/updateStatus','PembayaranController@updateStatus')->name('update.status');
     Route::post('/uploadBukti','PembayaranController@uploadBukti')->name('upload.bukti');
+    Route::get('/cetak','PembayaranController@cetak_pdf')->name('pembayaran.cetak_pdf');
 });
 
 Route::get('/delete/{table}/{id}',function ($table,$id){

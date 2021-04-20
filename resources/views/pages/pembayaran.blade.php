@@ -9,6 +9,7 @@
     @auth
         @if(auth()->user()->role==='admin')
             <div class="col-12">
+
                 <div class="card">
                     <div class="card-body overflow-auto">
                         <table id="dTable" class="table table-bordered table-hover w-100">
@@ -68,6 +69,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body table-responsive">
+                    <a href="{{route('pembayaran.cetak_pdf')}}" class="btn btn-primary">Cetak</a>
+
                         <table id="dTable" class="table table-bordered table-hover">
                             <thead>
                             <tr>
