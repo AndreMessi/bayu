@@ -70,7 +70,6 @@
                 <div class="card">
                     <div class="card-body table-responsive">
                     <a href="{{route('pembayaran.cetak_pdf')}}" class="btn btn-primary">Cetak</a>
-
                         <table id="dTable" class="table table-bordered table-hover">
                             <thead>
                             <tr>
