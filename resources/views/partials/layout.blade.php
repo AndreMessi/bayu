@@ -6,9 +6,7 @@
     @include('partials.css')
 </head>
 <body class="hold-transition layout-top-nav">
-<div class="wrapper"
-    style="background:url('{{asset('bg.jpg')}}')"
->
+<div class="wrapper">
     @include('partials.menu')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
